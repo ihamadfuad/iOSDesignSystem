@@ -16,16 +16,18 @@ import SwiftUI
 
 struct ShadowBackground: ViewModifier {
 
+    var backgroundColor: Color = .white
+
     func body(content: Content) -> some View {
 
         content
             .padding(.horizontal, 12)
-            .padding(.vertical, 4)
+            .padding(.vertical, 8)
             .background(RoundedRectangle(cornerRadius: 8,
                                          style: .continuous)
-                .fill(.white))
+                .fill(backgroundColor))
             .shadow(color: Color.black.opacity(0.2),
-                    radius: 8,
+                    radius: 6,
                     x: 0,
                     y: 4)
     }
@@ -33,8 +35,8 @@ struct ShadowBackground: ViewModifier {
 
 extension View {
 
-    func shadowStyle() -> some View {
+    func shadowStyle(backgroundColor: Color = .white) -> some View {
         
-        modifier(ShadowBackground())
+        modifier(ShadowBackground(backgroundColor: backgroundColor))
     }
 }
